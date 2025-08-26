@@ -1,0 +1,5 @@
+.env
+env
+csvs
+.idea
+__pycache__
