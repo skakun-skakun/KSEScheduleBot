@@ -1,0 +1,7 @@
+services:
+  bot:
+    container_name: scheduler_bot
+    restart: on-failure
+    build: .
+    env_file: ".env"
+    command: python main.py
