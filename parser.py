@@ -59,9 +59,10 @@ class Parser:
         resp = {
         }
         for i, day in enumerate(('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')):
-            resp[day] = self.get_day_subjects(week, i, subjects)
-            if not resp[day]:
-                del resp[day]
+            str_day = day + ' ' + (self.SEPTEMBER_FIRST + timedelta(days=(week-1)*7+i)).strftime('%d/%m')
+            resp[str_day] = self.get_day_subjects(week, i, subjects)
+            if not resp[str_day]:
+                del resp[str_day]
         return resp
 
     def get_interval_subjects_from_schedule(self, subjects, start_date, end_date):

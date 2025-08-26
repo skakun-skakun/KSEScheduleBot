@@ -81,7 +81,7 @@ async def inline_week_schedule(call: CallbackQuery, state: FSMContext):
     else:
         if '@kse.org.ua' not in email_or_name:
             email_or_name += '@kse.org.ua'
-        subjects = parser.parse_students_subjects(emailemail_or_name=email_or_name)
+        subjects = parser.parse_students_subjects(email=email_or_name)
 
     if not subjects:
         await call.message.edit_text("No schedule found by given credentials")
