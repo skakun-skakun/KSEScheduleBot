@@ -34,11 +34,18 @@ class Parser:
         self.df_formating = pd.read_csv(
             f"https://docs.google.com/spreadsheets/d/{os.getenv('SHEET_ID')}/export?format=csv&gid={os.getenv('SHEET_FORMATING_GID')}")
 
-    def parse_students_subjects(self, email):
-        try:
-            return self.df_distribution[self.df_distribution['Пошта'] == email].iloc[0].dropna()[4:].values.tolist()
-        except IndexError:
-            return []
+    def parse_students_subjects(self, email=None, name=None, surname=None):
+        if email is not None:
+            try:
+                return self.df_distribution[self.df_distribution['Пошта'] == email].iloc[0, 4:].dropna().values.tolist()
+            except IndexError:
+                return []
+        elif name is not None and surname is not None:
+            try:
+                return self.df_distribution[(self.df_distribution['Прізвище'] == surname) & (self.df_distribution['Ім\'я'] == name)].iloc[0, 4:].dropna().values.tolist()
+            except IndexError:
+                return []
+        return []
 
     def get_day_subjects(self, week, day, subjects):
         resp = {}
