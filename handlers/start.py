@@ -20,7 +20,7 @@ async def on_any_message(message: types.Message):
 async def bot_work(call: types.CallbackQuery):
     await call.message.edit_reply_markup(reply_markup=None)
     await bot.send_message(os.getenv("LOGS_CHAT_ID"), f"{call.from_user.username} ({call.from_user.id}) wants bot to work")
-    await call.message.answer("Повідомлення відправлено ✅")
+    await call.message.edit_text("Повідомлення відправлено ✅")
 
 # @router.message(CommandStart())
 # async def start(message: types.Message):
