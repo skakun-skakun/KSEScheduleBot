@@ -19,7 +19,7 @@ async def on_any_message(message: types.Message):
 @router.callback_query(F.data == 'bot_please_work')
 async def bot_work(call: types.CallbackQuery):
     await call.message.edit_reply_markup(reply_markup=None)
-    await bot.send_message(os.getenv("LOGS_CHAT_ID"), f"{call.from_user.username} ({call.from_user.id}) wants bot to work")
+    await bot.send_message(os.getenv("LOGS_CHAT_ID"), f"{call.from_user.username if call.from_user.username else call.from_user.first_name + ' ' + call.from_user.last_name} ({call.from_user.id}) wants bot to work")
     await call.message.edit_text("Повідомлення відправлено ✅")
 
 # @router.message(CommandStart())
