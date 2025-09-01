@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 
-class Parser:
+class TableParser:
     SEPTEMBER_FIRST = datetime(2025, 9, 1)
 
     def __init__(self):
